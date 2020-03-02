@@ -58,6 +58,12 @@ jobs:
            ls
        fi
 
+    - name: Test Container
+      run: |
+        #singularity exec smokey.sif python run_tests.py
+        #singularity test smokey.sif
+        #singularity run toasty.sif
+
     - name: Deploy Container
       run: |
         sudo pip3 install sregistry

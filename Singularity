@@ -13,8 +13,6 @@ From: ubuntu:18.04
     export PATH=/app:$PATH
 
 %files
-    ./tools/run_connector.py /tmp
-    ./tools/run_processor.py /tmp
 
 %runscript
     exec "$@"
