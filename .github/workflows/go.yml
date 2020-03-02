@@ -66,5 +66,7 @@ jobs:
 
     - name: Deploy Container
       run: |
-        sudo pip3 install sregistry
-        SREGISTRY_CLIENT=registry sregistry push --name moldingtofu/FAOConnector container.sif
+        git clone https://github.com/singularityhub/sregistry-cli
+        cd sregistry-cli
+        python setup.py install
+        singularity remote add geoedf http://ec2-18-215-173-2.compute-1.amazonaws.com
