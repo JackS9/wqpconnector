@@ -1,10 +1,11 @@
-from GeoEDF.framework.helper.GeoEDFError import GeoEDFError
-from GeoEDF.framework.connector.GeoEDFConnectorPlugin import GeoEDFConnectorPlugin
+#from GeoEDF.framework.helper.GeoEDFError import GeoEDFError
+#from GeoEDF.framework.connector.GeoEDFConnectorPlugin import GeoEDFConnectorPlugin
 import requests
 import os
 import zipfile
 
-class FAOInput(GeoEDFConnectorPlugin):
+#class FAOInput(GeoEDFConnectorPlugin):
+class FAOInput():
 
     url = "http://fenixservices.fao.org/faostat/static/bulkdownloads/datasets_E.json"
     # no optional params yet, but keep around for future extension
@@ -22,7 +23,8 @@ class FAOInput(GeoEDFConnectorPlugin):
         # check that all required params have been provided
         for param in self.__required_params:
             if param not in kwargs:
-                raise GeoEDFError('Required parameter %s for FAOInput not provided' % param)
+                #raise GeoEDFError('Required parameter %s for FAOInput not provided' % param)
+                raise Exception('Required parameter %s for FAOInput not provided' % param)
 
         # set all required parameters
         for key in self.__required_params:
@@ -67,7 +69,7 @@ class FAOInput(GeoEDFConnectorPlugin):
                         if os.path.exists(dataset_name):
                             os.remove(dataset_name)
 
-        except GeoEDFError:
-            raise
+        #except GeoEDFError:
+        #    raise
         except:
             raise
