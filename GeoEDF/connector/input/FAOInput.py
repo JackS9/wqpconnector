@@ -1,11 +1,11 @@
-#from GeoEDF.framework.helper.GeoEDFError import GeoEDFError
-#from GeoEDF.framework.connector.GeoEDFConnectorPlugin import GeoEDFConnectorPlugin
+from geoedfframework.utils.GeoEDFError import GeoEDFError
+from geoedfframework.GeoEDFPlugin import GeoEDFPlugin
+
 import requests
 import os
 import zipfile
 
-#class FAOInput(GeoEDFConnectorPlugin):
-class FAOInput():
+class FAOInput(GeoEDFPlugin):
 
     url = "http://fenixservices.fao.org/faostat/static/bulkdownloads/datasets_E.json"
     # no optional params yet, but keep around for future extension
@@ -23,8 +23,7 @@ class FAOInput():
         # check that all required params have been provided
         for param in self.__required_params:
             if param not in kwargs:
-                #raise GeoEDFError('Required parameter %s for FAOInput not provided' % param)
-                raise Exception('Required parameter %s for FAOInput not provided' % param)
+                raise GeoEDFError('Required parameter %s for FAOInput not provided' % param)
 
         # set all required parameters
         for key in self.__required_params:
@@ -41,10 +40,7 @@ class FAOInput():
     # each Input plugin needs to implement this method
     # if error, raise exception; if not, return True
 
-    def get(self, url, path):
-        #see connector class for self.temp_path
-        if path is None:
-            path = os.getcwd()
+    def get(self):
         # call functions from this module
         try:
             link_request = requests.get(self.url)
@@ -58,7 +54,7 @@ class FAOInput():
                     if dataset['DatasetName'] == dataset_name:
                         res = requests.get(url=dataset['FileLocation'], stream=True)
 
-                        out_path = '%s/%s' % (path,dataset_name)
+                        out_path = '%s/%s' % (self.target_path,dataset_name)
                         with open(out_path,'wb') as out_file:
                             for chunk in res.iter_content(chunk_size=1024*1024):
                                 out_file.write(chunk)
@@ -69,7 +65,5 @@ class FAOInput():
                         if os.path.exists(dataset_name):
                             os.remove(dataset_name)
 
-        #except GeoEDFError:
-        #    raise
-        except:
+        except GeoEDFError:
             raise

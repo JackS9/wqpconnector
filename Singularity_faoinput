@@ -1,0 +1,17 @@
+BootStrap: localimage
+From: geoedfframework.sif
+
+%files
+
+    faoinput/ /tmp
+
+%environment
+    export PYTHONPATH=/usr/local/lib/python3.7/dist-packages:$PYTHONPATH
+    export PATH=/opt/conda/bin:/opt/conda/envs/faoinput/bin:$PATH
+
+%post
+    export PATH=/opt/conda/bin:$PATH
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc
+    #echo "source activate faoinput" >> ~/.bashrc
+    /opt/conda/bin/conda create --name faoinput 
+    cd /tmp/faoinput && /opt/conda/bin/conda run -n faoinput pip install .

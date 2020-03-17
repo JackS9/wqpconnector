@@ -1,13 +1,12 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='faoconnector',
       version='0.1',
-      description='connector for FA)',
-      url='http://github.com/moldingtofu/faoconnector',
-      author='',
-      author_email='',
+      description='Connector for U.N. FAO dataset)',
+      url='http://github.com/geoedf/faoinput',
+      author='Rajesh Kalyanam',
+      author_email='rkalyanapurdue@gmail.com',
       license='MIT',
-      packages=['faoconnector'],
-      install_requires=['requests','os','zipfile'],
-      #dependency_links=['http://github.com/user/repo/tarball/master#egg=package-1.0']
+      packages=find_packages(),
+      install_requires=['requests'],
       zip_safe=False)
