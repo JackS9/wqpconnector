@@ -49,7 +49,7 @@ class FAOInput(GeoEDFPlugin):
             json_datasets = fao_request['Datasets']
             final_data = json_datasets['Dataset']
 
-            for dataset_name in dataset_names:
+            for dataset_name in self.dataset_names:
                 for dataset in final_data:
                     if dataset['DatasetName'] == dataset_name:
                         res = requests.get(url=dataset['FileLocation'], stream=True)
@@ -59,11 +59,10 @@ class FAOInput(GeoEDFPlugin):
                             for chunk in res.iter_content(chunk_size=1024*1024):
                                 out_file.write(chunk)
 
-                        with zipfile.ZipFile(path + '/' + dataset_name, 'r') as zip_ref:
-                            zip_ref.extractall(path)
+                        with zipfile.ZipFile(self.target_path + '/' + dataset_name, 'r') as zip_ref:
+                            zip_ref.extractall(self.target_path)
 
-                        if os.path.exists(dataset_name):
-                            os.remove(dataset_name)
-
+                        if os.path.exists(self.target_path + '/' + dataset_name):
+                            os.remove(self.target_path + '/' + dataset_name)
         except GeoEDFError:
             raise

@@ -12,6 +12,7 @@ From: geoedfframework.sif
 %post
     export PATH=/opt/conda/bin:$PATH
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc
-    #echo "source activate faoinput" >> ~/.bashrc
-    /opt/conda/bin/conda create --name faoinput 
-    cd /tmp/faoinput && /opt/conda/bin/conda run -n faoinput pip install .
+
+    conda create --name faoinput 
+
+    cd /tmp/faoinput && conda install -n faoinput pip && conda run -n faoinput /opt/conda/envs/faoinput/bin/pip install .
