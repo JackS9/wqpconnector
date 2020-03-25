@@ -3,7 +3,7 @@ From: geoedfframework.sif
 
 %files
 
-    faoinput/ /tmp
+    wqpinput/ /tmp
 
 %environment
     export PYTHONPATH=/usr/local/lib/python3.7/dist-packages:$PYTHONPATH
@@ -13,6 +13,6 @@ From: geoedfframework.sif
     export PATH=/opt/conda/bin:$PATH
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc
 
-    conda create --name faoinput 
+    conda create --name wqpinput 
 
-    cd /tmp/faoinput && conda install -n faoinput pip && conda run -n faoinput /opt/conda/envs/faoinput/bin/pip install .
+    cd /tmp/wqpinput && conda install -n wqpinput pip && conda run -n wqpoinput /opt/conda/envs/wqpinput/bin/pip install .
