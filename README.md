@@ -1,1 +1,1 @@
-This is a connector to download a specific dataset from the UN FAOSTAT website by parsing the FAO JSON data dictionary
+This is a connector to download data from the EPA/USGS Water Quality Portal (WQP) using their REST API
