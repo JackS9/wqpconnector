@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
-setup(name='faoconnector',
+setup(name='wqpconnector',
       version='0.1',
-      description='Connector for U.N. FAO dataset)',
-      url='http://github.com/geoedf/faoinput',
-      author='Rajesh Kalyanam',
-      author_email='rkalyanapurdue@gmail.com',
+      description='Connector for EPA/USGA Water Quality Portal',
+      url='http://github.com/jacks9/wqpinput',
+      author='Jack Smith',
+      author_email='smith1106@marshall.edu',
       license='MIT',
       packages=find_packages(),
       install_requires=['requests'],
